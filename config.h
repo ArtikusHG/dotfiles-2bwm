@@ -43,7 +43,7 @@ static const char *ignore_names[] = {"bar", "xclock"};
 static const char *menucmd[]     = { "bash", "-c", "nohup $(ls --color=off /usr/bin | dmenu -l 10 -nb \"#272D3A\" -fn \"t cherry\")", NULL };
 static const char *terminalcmd[] = { "urxvt", "-g", "60x20+26+43", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
-static const char *screenshot[]  = { "scrot", "%Y-%m-%d_scrot.png", "-e", "mv ./*scrot.png ~/Screenshots && notify-send Done 'Screenshot saved.'", NULL };
+static const char *screenshot[]  = { "scrot", "%Y-%m-%d-%T_$wx$h_scrot.png", "-e", "mv ./*scrot.png ~/Screenshots && notify-send Done 'Screenshot saved.'", NULL };
 ///--Volume and Brigntess control stuff--///
 static const char *volumetoggle[]   = { "amixer", "set", "Master", "toggle", NULL };
 static const char *volumeincrease[] = { "amixer", "-q", "set", "Master", "5%+", NULL };
