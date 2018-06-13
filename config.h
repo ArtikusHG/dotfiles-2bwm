@@ -43,6 +43,7 @@ static const char *ignore_names[] = {"bar", "xclock"};
 static const char *menucmd[]     = { "bash", "-c", "nohup $(ls --color=off /usr/bin | dmenu -l 10 -nb \"#272D3A\" -fn \"t cherry\")", NULL };
 static const char *terminalcmd[] = { "urxvt", "-g", "60x20+26+43", NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *screenshot[]  = { "scrot", "-e", "\"mv ~/*scrot*.png ~/Screenshots && notify-send Done 'Screenshot saved.'\"", NULL };
 ///--Volume and Brigntess control stuff--///
 static const char *volumetoggle[]   = { "amixer", "set", "Master", "toggle", NULL };
 static const char *volumeincrease[] = { "amixer", "-q", "set", "Master", "5%+", NULL };
@@ -158,6 +159,7 @@ static key keys[] = {
     {  ALT,               XK_t,          start,             {.com = terminalcmd}},
     {  ALT,               XK_m,          start,             {.com = firefoxcmd}},
     {  CONTROL,           XK_Return,     start,             {.com = menucmd}},
+    {  CONTROL,           XK_Print,      start,             {.com = screenshot}},
     // Volume and brightness control
     {  ALT,               XK_F1,         start,             {.com = volumetoggle}},
     {  ALT,               XK_F2,         start,             {.com = volumedecrease}},
