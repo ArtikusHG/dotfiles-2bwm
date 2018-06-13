@@ -16,9 +16,13 @@ clock() {
         date +%H:%M:%S
 }
 
-# Function that gets the bettery percentage
+# Function that gets the battery percentage and charging status
 battery() {
-	echo "$(sudo cat /sys/class/power_supply/BAT0/capacity)%"
+	if [[ $(sudo cat /sys/class/power_supply/BAT0/status) = "Charging" ]]; then
+		echo "%{B#999E61} $(sudo cat /sys/class/power_supply/BAT0/capacity)%"
+	else
+		echo "%{B#305E85} $(sudo cat /sys/class/power_supply/BAT0/capacity)%"
+	fi
 }
 
 # Function that gets the volume (and checks if the sound is disabled)
@@ -50,6 +54,6 @@ backlight() {
 
 # Infinite loop that checks if something has changed 50 times in a second and echoes the bar input
 while 'true'; do
-	echo -e "%{B#384156} $(workspace) %{B#E0B053} $(ram) $(cpu) %{B#305E85} $(dateFunc) %{B#568FC0} $(clock) %{r}%{B#568FC0} $(backlight) %{B#305E85} $(battery) %{B#E0B053} $(sound) %{B#272D3A}"
-	sleep 0.02
+	echo -e "%{B#384156} $(workspace) %{B#E0B053} $(ram) $(cpu) %{B#305E85} $(dateFunc) %{B#568FC0} $(clock) %{r}%{B#568FC0} $(backlight) $(battery) %{B#E0B053} $(sound) %{B#272D3A}"
+	sleep 0.1
 done
