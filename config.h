@@ -50,6 +50,10 @@ static const char *volumeincrease[] = { "amixer", "-q", "set", "Master", "5%+", 
 static const char *volumedecrease[] = { "amixer", "-q", "set", "Master", "5%-", NULL };
 static const char *brightnessdec[]  = { "xbacklight", "-set", "-dec", "-10%", NULL };
 static const char *brightnessinc[]  = { "xbacklight", "-set", "-inc", "+10%", NULL };
+///--mpd playback control-///
+static const char *nextsong[]   = { "bash", "-c", "mpc next" };
+static const char *prevsong[]   = { "bash", "-c", "mpc prev" };
+static const char *togglesong[] = { "bash", "-c", "mpc toggle" };
 ///--Custom foo---///
 static void halfandcentered(const Arg *arg)
 {
@@ -166,6 +170,10 @@ static key keys[] = {
     {  ALT,               XK_F3,         start,             {.com = volumeincrease}},
     {  ALT,               XK_F11,        start,             {.com = brightnessdec}},
     {  ALT,               XK_F12,        start,             {.com = brightnessinc}},
+    // mpd playback control
+    {  ALT,               XK_F4,         start,             {.com = prevsong}},
+    {  ALT,               XK_F5,         start,             {.com = togglesong}},
+    {  ALT,               XK_F6,         start,             {.com = nextsong}},
     // Exit or restart 2bwm
     {  MOD |CONTROL,      XK_q,          twobwm_exit,       {.i=0}},
     {  MOD |CONTROL,      XK_r,          twobwm_restart,    {.i=0}},
